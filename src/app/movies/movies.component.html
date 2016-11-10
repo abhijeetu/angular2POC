@@ -7,15 +7,20 @@
 <body>
 <p>In movie page</p>
 
-<table border="1">
-  <tr *ngFor="let movie of movies">
-    <td>
-      {{movie.title}}
-    </td>
-    <td>
-      {{movie.director}}
-    </td>
+<a class="btn-primary btn-lg nodecoration" (click)="createNewMovie()">Add New Movie</a>
+<table class="table movietable ng-scope">
+  <tbody>
+  <tr>
+    <td><h3>All Movies</h3></td>
+    <td></td>
   </tr>
-</table>
+  <!-- ngRepeat: movie in movies --><tr *ngFor="let movie of movies" >
+    <td class="ng-binding">{{movie.title}}</td>
+    <td>
+      <a class="btn btn-primary" (click)="gotoMovieDetails(movie._id)" >View</a>
+      <a class="btn btn-danger" ng-click="deleteMovie(movie)">Delete</a>
+    </td>
+  </tr><!-- end ngRepeat: movie in movies -->
+  </tbody></table>
 </body>
 </html>

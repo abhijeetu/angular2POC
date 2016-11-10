@@ -10,11 +10,14 @@ import { AboutComponent } from './about/about.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { DetailsComponent } from './details/details.component';
 import { MoviesComponent } from './movies/movies.component';
+import { MovieDetailsComponent } from './movies/movie.details.component';
+
 import { ApiService } from './shared';
 import { routing } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import {MovieService} from "./movies/movies.service";
+import {NewMovieComponent} from "./movies/movie.new.component.ts";
 
 @NgModule({
   imports: [
@@ -30,7 +33,9 @@ import {MovieService} from "./movies/movies.service";
     AboutComponent,
     CarouselComponent,
     DetailsComponent,
-    MoviesComponent
+    MoviesComponent,
+    MovieDetailsComponent,
+    NewMovieComponent
   ],
   providers: [
     ApiService,
