@@ -19,45 +19,41 @@ export class MovieService {
     return this.http.get(this.restURL)
       .map((res:Response) => res.json())
       .do(data=>console.log(JSON.stringify(data)))
-      //...errors if any
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
   }
 
-  getSingleMovie(id:number): Observable <Movie[]>
+  getSingleMovie(id:number): Observable <Movie>
   {
     return this.http.get(this.restURL + '/' + id)
       .map((res:Response) => res.json())
       .do(data=>console.log(JSON.stringify(data)))
-      //...errors if any
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
   }
 
+  addMovie (body: Object): Observable<any> {
+    let bodyString = JSON.stringify(body);
+    let headers      = new Headers({ 'Content-Type': 'application/json' });
+    let options       = new RequestOptions({ headers: headers });
 
-  addMovie (body: Object): Observable<Movie[]> {
-    let bodyString = JSON.stringify(body); // Stringify payload
-    let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options       = new RequestOptions({ headers: headers }); // Create a request option
-
-    return this.http.post(this.restURL, body, options) // ...using post request
-      .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+    return this.http.post(this.restURL, body, options)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  // Update a comment
   updateMovie (body: Object): Observable<Movie[]> {
-    let bodyString = JSON.stringify(body); // Stringify payload
-    let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options       = new RequestOptions({ headers: headers }); // Create a request option
+    let bodyString = JSON.stringify(body);
+    let headers      = new Headers({ 'Content-Type': 'application/json' });
+    let options       = new RequestOptions({ headers: headers });
 
-    return this.http.put(`${this.restURL}/${body['_id']}`, body, options) // ...using put request
-      .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+    return this.http.put(`${this.restURL}/${body['_id']}`, body, options)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
-  // Delete a comment
+
   removeMovie (id:number): Observable<Movie[]> {
-    return this.http.delete(`${this.restURL}/${id}`) // ...using put request
-      .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+    return this.http.delete(`${this.restURL}/${id}`)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
 }

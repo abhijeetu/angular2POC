@@ -16,8 +16,8 @@ import { ApiService } from './shared';
 import { routing } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
-import {MovieService} from "./movies/movies.service";
-import {NewMovieComponent} from "./movies/movie.new.component.ts";
+import {MovieService} from './movies/movies.service';
+import {NewMovieComponent} from './movies/movie.new.component.ts';
 
 @NgModule({
   imports: [

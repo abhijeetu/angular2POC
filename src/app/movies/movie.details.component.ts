@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router'
-import {Movie} from "./movie";
-import {MovieService} from "./movies.service";
+import {Movie} from './movie';
+import {MovieService} from './movies.service';
 
 
 @Component({
@@ -19,21 +19,16 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.productID = route.snapshot.params['id']; // 3
+    this.getSingleMovie();
+  }
+
+  getSingleMovie(){
     this.route.params.subscribe(params => {
       this.movieId = params['id'];
-    //  this.movieService.getMovies().subscribe(movies=>this.movies=movies,error=>this.errorMessage = error);
-      //console.log(this.movies);
       console.log('***' + this.movieId);
-
-
-        this.movieService.getSingleMovie(this.movieId).subscribe(movie=>this.movie=movie,error=>this.errorMessage = error);
-
-
+      this.movieService.getSingleMovie(this.movieId).subscribe(movie=>this.movie=movie,error=>this.errorMessage = error);
       console.log(this.movie);
-
     });
-
     console.log('Movie Details Page');
   }
 

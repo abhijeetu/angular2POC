@@ -5,11 +5,15 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'my-carousel',
   templateUrl: './carousel.component.html'
-  //template : '<p>{{myInterval}}</p>'
+  // template : '<p>{{myInterval}}</p>'
 })
 export class CarouselComponent implements OnInit {
 
-  constructor(private router:Router) {
+  public myInterval: number = 5000;
+  public noWrapSlides: boolean = false;
+  public slides: Array<any> = [];
+
+  constructor(private router: Router) {
     for (let i = 0; i < 4; i++) {
       this.addSlide();
     }
@@ -19,9 +23,6 @@ export class CarouselComponent implements OnInit {
     console.log('Hello Carousal');
   }
 
-  public myInterval:number = 5000;
-  public noWrapSlides:boolean = false;
-  public slides:Array<any> = [];
 
   public addSlide():void {
     let newWidth = 600 + this.slides.length + 1;

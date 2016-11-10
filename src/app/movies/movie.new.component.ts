@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router , ActivatedRoute} from '@angular/router';
 
-import {Movie} from "./movie";
-import {MovieService} from "./movies.service";
+import {Movie} from './movie';
+import {MovieService} from './movies.service';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -16,9 +16,9 @@ export class NewMovieComponent implements OnInit {
   movieId:number;
   private movie = new Movie();
   private editing = false;
-  private errorMessage="";
+  private errorMessage='';
 
-  constructor(private router:Router,private route : ActivatedRoute,private movieService:MovieService) {
+  constructor(private router: Router,private route: ActivatedRoute,private movieService:MovieService) {
 
   }
 
@@ -27,21 +27,19 @@ export class NewMovieComponent implements OnInit {
       this.movieId = params['id'];
       if(this.movieId){
         this.editing = true;
-        this.movieService.getSingleMovie(this.movieId).subscribe(movie=>this.movie=movie,error=>this.errorMessage = error);
+        this.movieService.getSingleMovie(this.movieId).subscribe(movie=> this.movie= movie,error=> this.errorMessage = error);
       }
     });
   }
 
   addMovie(){
-    // Variable to hold a reference of addComment/updateComment
     let commentOperation:Observable<Movie[]>;
 
-
     if(!this.editing){
-      // Create a new comment
+      // Create a new movie
       commentOperation = this.movieService.addMovie(this.movie)
     } else {
-      // Update an existing comment
+      // Update an existing movie
       commentOperation = this.movieService.updateMovie(this.movie)
     }
 
@@ -52,15 +50,11 @@ export class NewMovieComponent implements OnInit {
         //EmitterService.get(this.listId).emit(comments);
         // Empty model
         this.movie = new Movie();
-        // Switch editing status
         if(this.editing) this.editing = !this.editing;
       },
       err => {
-        // Log errors if any
         console.log(err);
       });
     this.router.navigate(['/movies']);
   }
-
-
 }
