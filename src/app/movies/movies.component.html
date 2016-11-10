@@ -18,7 +18,7 @@
     <td class="ng-binding">{{movie.title}}</td>
     <td>
       <a class="btn btn-primary" (click)="gotoMovieDetails(movie._id)" >View</a>
-      <a class="btn btn-danger" ng-click="deleteMovie(movie)">Delete</a>
+      <a class="btn btn-danger" (click)="deleteMovie(movie._id); false">Delete</a>
     </td>
   </tr><!-- end ngRepeat: movie in movies -->
   </tbody></table>

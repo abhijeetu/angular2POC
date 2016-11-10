@@ -11,6 +11,8 @@ import {MovieService} from "./movies.service";
 export class MovieDetailsComponent implements OnInit {
 
   movieId:string;
+  private movie = new Movie();
+  private errorMessage:string;
 
   constructor(private router:Router,private route : ActivatedRoute,private movieService:MovieService) {
 
@@ -23,9 +25,20 @@ export class MovieDetailsComponent implements OnInit {
     //  this.movieService.getMovies().subscribe(movies=>this.movies=movies,error=>this.errorMessage = error);
       //console.log(this.movies);
       console.log('***' + this.movieId);
+
+
+        this.movieService.getSingleMovie(this.movieId).subscribe(movie=>this.movie=movie,error=>this.errorMessage = error);
+
+
+      console.log(this.movie);
+
     });
 
     console.log('Movie Details Page');
+  }
+
+  editMovie(id){
+    this.router.navigate(['/createNewMovie',id]);
   }
 
 }

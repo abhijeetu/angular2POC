@@ -23,6 +23,16 @@ export class MovieService {
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
   }
 
+  getSingleMovie(id:number): Observable <Movie[]>
+  {
+    return this.http.get(this.restURL + '/' + id)
+      .map((res:Response) => res.json())
+      .do(data=>console.log(JSON.stringify(data)))
+      //...errors if any
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
+  }
+
+
   addMovie (body: Object): Observable<Movie[]> {
     let bodyString = JSON.stringify(body); // Stringify payload
     let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
@@ -32,24 +42,22 @@ export class MovieService {
       .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }
-/*
+
   // Update a comment
-  updateComment (body: Object): Observable<Comment[]> {
+  updateMovie (body: Object): Observable<Movie[]> {
     let bodyString = JSON.stringify(body); // Stringify payload
     let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options       = new RequestOptions({ headers: headers }); // Create a request option
 
-    return this.http.put(`${this.commentsUrl}/${body['id']}`, body, options) // ...using put request
+    return this.http.put(`${this.restURL}/${body['_id']}`, body, options) // ...using put request
       .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }
-
   // Delete a comment
-  removeComment (id:string): Observable<Comment[]> {
-    return this.http.delete(`${this.commentsUrl}/${id}`) // ...using put request
+  removeMovie (id:number): Observable<Comment[]> {
+    return this.http.delete(`${this.restURL}/${id}`) // ...using put request
       .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }
-*/
 
 }

@@ -22,6 +22,13 @@ export class NewMovieComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.movieId = params['id'];
+      if(this.movieId){
+        this.editing = true;
+        this.movieService.getSingleMovie(this.movieId).subscribe(movie=>this.movie=movie,error=>this.errorMessage = error);
+      }
+    });
   }
 
   addMovie(){
@@ -34,7 +41,7 @@ export class NewMovieComponent implements OnInit {
       commentOperation = this.movieService.addMovie(this.movie)
     } else {
       // Update an existing comment
-      //commentOperation = this.commentService.updateMovie(this.movie)
+      commentOperation = this.movieService.updateMovie(this.movie)
     }
 
     // Subscribe to observable

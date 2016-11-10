@@ -12,6 +12,8 @@ import {Movie} from "./movie";
 export class MoviesComponent implements OnInit {
 
   movies:Movie[];
+  //selectedMovie: Movie[];
+
   private errorMessage:string;
   constructor(private movieService:MovieService,private router:Router) {
     // Do stuff
@@ -25,7 +27,13 @@ export class MoviesComponent implements OnInit {
   }
 
   public gotoMovieDetails(id){
+    // this.movieService.getSingleMovie(id).subscribe(selectedMovie=>selectedMovie=selectedMovie,error=>this.errorMessage = error);
     this.router.navigate(['/movieDetails',id]);
+  }
+
+  public deleteMovie(id){
+    this.movieService.removeMovie(id).subscribe(error=>this.errorMessage = error);
+    this.router.navigate(['/movies']);
   }
 
   public createNewMovie(){
