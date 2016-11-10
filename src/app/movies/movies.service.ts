@@ -54,7 +54,7 @@ export class MovieService {
       .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }
   // Delete a comment
-  removeMovie (id:number): Observable<Comment[]> {
+  removeMovie (id:number): Observable<Movie[]> {
     return this.http.delete(`${this.restURL}/${id}`) // ...using put request
       .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any

@@ -11,7 +11,6 @@ import '../style/component.css';
 })
 export class AppComponent {
   url = 'https://github.com/preboot/angular2-webpack';
-
   constructor(private api: ApiService) {
     // Do something with api
   }

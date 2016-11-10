@@ -10,7 +10,7 @@ import {MovieService} from "./movies.service";
 })
 export class MovieDetailsComponent implements OnInit {
 
-  movieId:string;
+  movieId:number;
   private movie = new Movie();
   private errorMessage:string;
 

@@ -13,9 +13,10 @@ import { Observable } from 'rxjs/Observable';
 })
 export class NewMovieComponent implements OnInit {
 
-  movieId:string;
+  movieId:number;
   private movie = new Movie();
   private editing = false;
+  private errorMessage="";
 
   constructor(private router:Router,private route : ActivatedRoute,private movieService:MovieService) {
 
