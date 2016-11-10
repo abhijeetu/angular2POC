@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router'
+import { Router , ActivatedRoute} from '@angular/router';
+
 import {Movie} from "./movie";
 import {MovieService} from "./movies.service";
 
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -22,13 +22,6 @@ export class NewMovieComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.productID = route.snapshot.params['id']; // 3
-    this.route.params.subscribe(params => {
-      this.movieId = params['id'];
-      console.log('***' + this.movieId);
-    });
-
-    console.log('Movie Details Page');
   }
 
   addMovie(){

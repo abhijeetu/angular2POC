@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router'
+import { ActivatedRoute, Router} from '@angular/router'
+import {Movie} from "./movie";
+import {MovieService} from "./movies.service";
+
 
 @Component({
   selector: 'movie-details',
@@ -9,7 +12,7 @@ export class MovieDetailsComponent implements OnInit {
 
   movieId:string;
 
-  constructor(private route : ActivatedRoute) {
+  constructor(private router:Router,private route : ActivatedRoute,private movieService:MovieService) {
 
   }
 
@@ -17,6 +20,8 @@ export class MovieDetailsComponent implements OnInit {
     //this.productID = route.snapshot.params['id']; // 3
     this.route.params.subscribe(params => {
       this.movieId = params['id'];
+    //  this.movieService.getMovies().subscribe(movies=>this.movies=movies,error=>this.errorMessage = error);
+      //console.log(this.movies);
       console.log('***' + this.movieId);
     });
 
