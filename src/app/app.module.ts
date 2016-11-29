@@ -19,12 +19,22 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import {MovieService} from './movies/movies.service';
 import {NewMovieComponent} from './movies/movie.new.component.ts';
 
+
+import {GoogleplaceDirective} from './googleplace.directive.ts';
+import { GoogleComponent } from './google/google.component';
+import { AgmCoreModule } from 'angular2-google-maps/core';
+import { GoogleMapComponent } from "./google/google-map/google-map.component";
+
+
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     CarouselModule,
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyCy_iIR-UAa-oO4lrFycjTyQkS14GXbQys'
+    }),
     routing
   ],
   declarations: [
@@ -35,7 +45,10 @@ import {NewMovieComponent} from './movies/movie.new.component.ts';
     DetailsComponent,
     MoviesComponent,
     MovieDetailsComponent,
-    NewMovieComponent
+    NewMovieComponent,
+    GoogleplaceDirective,
+    GoogleComponent,
+    GoogleMapComponent
   ],
   providers: [
     ApiService,
